@@ -2,6 +2,7 @@ name: Feature
 description: Feature Issue
 title: "[Feature]: "
 labels: ["feature"]
+projects: ["sgmdq729/1"]
 body:
   - type: textarea
     id: feature-details
