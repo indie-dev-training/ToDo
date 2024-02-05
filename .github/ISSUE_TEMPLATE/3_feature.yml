@@ -1,0 +1,9 @@
+name: Feature
+description: Feature Issue
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: feature-details
+    attributes:
+      label: feature details
