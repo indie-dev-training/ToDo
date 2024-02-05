@@ -2,6 +2,7 @@ name: Story
 description: Story Issue
 title: "[Story]: "
 labels: ["story"]
+projects: ["sgmdq729/1"]
 body:
   - type: textarea
     id: story-details
