@@ -1,0 +1,9 @@
+name: Task
+description: Task Issue
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: textarea
+    id: task-details
+    attributes:
+      label: task details
