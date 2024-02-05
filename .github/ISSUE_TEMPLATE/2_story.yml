@@ -1,0 +1,10 @@
+name: Story
+description: Story Issue
+title: "[Story]: "
+labels: ["story"]
+body:
+  - type: textarea
+    id: story-details
+    attributes:
+      label: task details
+      value: "🧑誰が：\n🗯要求：\n❓理由："
