@@ -1,11 +1,26 @@
+mod handlers;
+mod repositories;
+
+use crate::repositories::{
+    TodoRepository,
+    InMemoryTodoRepository
+};
+
+use crate::handlers::create_todo;
+
 use axum::{
-    http::StatusCode, 
-    response::IntoResponse, 
-    routing::get, Router
+    extract::Extension,
+    http::StatusCode,
+    response::IntoResponse,
+    routing::{get, post}, 
+    Router
 };
 use dotenv::dotenv;
-use std::env;
-use tracing_subscriber::{prelude::*};
+use std::{
+    env,
+    sync::Arc
+};
+use tracing_subscriber::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -20,18 +35,20 @@ async fn main() {
     .with(tracing_subscriber::fmt::layer())
     .init();
 
-    let app = create_app().await;
+    let repository = InMemoryTodoRepository::new();
+    let app = create_app(repository).await;
     let listener = tokio::net::TcpListener::bind(&host).await.unwrap();
 
     tracing::info!("listening on {}", host);
     axum::serve(listener, app).await.unwrap();
 }
 
-#[tracing::instrument]
-async fn create_app() -> Router {
+async fn create_app<T: TodoRepository>(repository: T) -> Router {
     tracing::info!("create router...");
     Router::new()
         .route("/api/v1", get(health))
+        .route("/api/v1/todo", post(create_todo::<T>))
+        .layer(Extension(Arc::new(repository)))
 }
 
 #[tracing::instrument]

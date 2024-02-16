@@ -12,3 +12,4 @@ tower = "0.4.13"
 dotenv = "0.15.0"
 tracing = "0.1.40"
 tracing-subscriber = { version="0.3.18", features = ["env-filter"]}
+serde = { version="1.0.196", features = ["derive"]}

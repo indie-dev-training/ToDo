@@ -40,11 +40,11 @@ type Todos = HashMap<u32, Todo>;
 // repositories
 #[derive(Debug, Clone)]
 pub struct InMemoryTodoRepository {
-    store: Arc<RwLock<Todos>>
+    pub store: Arc<RwLock<Todos>>
 }
 
 impl InMemoryTodoRepository {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self {
             store: Arc::default()
         }
@@ -52,11 +52,11 @@ impl InMemoryTodoRepository {
 
     // write store(thread safe)
     fn write_store(&self) -> RwLockWriteGuard<Todos> {
-        self.store.write().unwrap();
+        self.store.write().unwrap()
     }
 
     fn read_store(&self) -> RwLockReadGuard<Todos> {
-        self.store.read().unwrap();
+        self.store.read().unwrap()
     }
 }
 
