@@ -6,7 +6,7 @@ use crate::repositories::{
     InMemoryTodoRepository
 };
 
-use crate::handlers::create_todo;
+use crate::handlers::*;
 
 use axum::{
     extract::Extension,
@@ -47,7 +47,8 @@ async fn create_app<T: TodoRepository>(repository: T) -> Router {
     tracing::info!("create router...");
     Router::new()
         .route("/api/v1", get(health))
-        .route("/api/v1/todo", post(create_todo::<T>))
+        .route("/api/v1/todo", post(create_todo::<T>).get(get_all_todo::<T>))
+        .route("/api/v1/todo/:id", get(get_todo::<T>))
         .layer(Extension(Arc::new(repository)))
 }
 

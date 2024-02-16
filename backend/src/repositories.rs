@@ -30,7 +30,7 @@ impl Todo {
 
 pub trait TodoRepository:  Clone + std::marker::Send + std::marker::Sync + 'static {
     fn create(&self, payload: NewTodo) -> Todo;
-    fn find(&self, id: u32) -> Option<Todo>;
+    fn find(&self, id: u32) -> Option<Box<Todo>>;
     fn find_all(&self) -> Vec<Todo>;
 }
 
@@ -62,14 +62,22 @@ impl InMemoryTodoRepository {
 
 impl TodoRepository for InMemoryTodoRepository {
     fn create(&self, payload: NewTodo) -> Todo {
-        todo!();
+        let mut store = self.write_store();
+        let id = (store.len() + 1) as u32;
+        let todo = Todo::new(id, payload.text.clone());
+        store.insert(id, todo.clone());
+        todo
     }
 
-    fn find(&self, id: u32) -> Option<Todo> {
-        todo!();
+    fn find(&self, id: u32) -> Option<Box<Todo>> {
+        let store = self.read_store();
+        let todo = store.get(&id)?;
+        let todo = Box::new(todo.clone());
+        Some(todo)
     }
 
     fn find_all(&self) -> Vec<Todo> {
-        todo!();
+        let store = self.read_store();
+        Vec::from_iter(store.values().map(|todo| todo.clone()))
     }
 }
