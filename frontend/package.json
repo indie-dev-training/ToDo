@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fix": "bun fix:eslint && bun fix:prettier",
+    "fix": "pnpm fix:eslint && pnpm fix:prettier",
     "fix:eslint": "next lint --fix",
     "fix:prettier": "prettier --write --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json}\""
   },
