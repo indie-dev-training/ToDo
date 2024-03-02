@@ -1,0 +1,30 @@
+{
+  "name": "frontend",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "target": "dev",
+    "args": {
+      "UID": "1000",
+      "GID": "1000"
+    }
+  },
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/frontend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "GitHub.copilot",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "remoteUser": "node"
+}

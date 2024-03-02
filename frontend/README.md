@@ -2,7 +2,13 @@
 
 ToDoアプリのフロントエンドディレクトリです。
 
+
 ## 開発環境の構築
+### 前提条件
+下記環境が構築できていることを前提とします。
+- WSL2
+- Docker
+- Devcontainer
 
 ### `.env` の作成
 
@@ -10,10 +16,10 @@ ToDoアプリのフロントエンドディレクトリです。
 cp .env.example .env.development.local
 ```
 
-### 関連ライブラリの取得
+### `devcontainer.json` の作成
 
 ```sh
-bun install
+cp devcontainer.json.example devcontainer.json
 ```
 
 ## 実行
@@ -21,12 +27,12 @@ bun install
 ### 開発（ホットリロード）
 
 ```sh
-bun dev
+pnpm dev
 ```
 
 ### 本番
 
 ```sh
-bun build
-bun start
+pnpm build
+pnpm start
 ```
