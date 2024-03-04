@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "target": "dev",
+    "args": {
+      "USERNAME": "${localEnv:USER}",
+      "UID": "1000",
+      "GID": "1000"
+    }
+  },
+  "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
+  "workspaceFolder": "/workspace/backend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+				"rust-lang.rust-analyzer"
+      ]
+    }
+  },
+	"remoteUser": "${localEnv:USER}"
+}
