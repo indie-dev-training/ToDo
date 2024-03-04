@@ -36,5 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/.pnpm-store/
-/.devcontainer/devcontainer.json
+.pnpm-store/
+.devcontainer/devcontainer.json
