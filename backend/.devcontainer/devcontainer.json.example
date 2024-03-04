@@ -1,15 +1,16 @@
 {
-  "name": "frontend",
+  "name": "backend",
   "build": {
     "dockerfile": "../Dockerfile",
     "target": "dev",
     "args": {
+      "USERNAME": "${localEnv:USER}",
       "UID": "1000",
       "GID": "1000"
     }
   },
   "workspaceMount": "source=${localWorkspaceFolder}/..,target=/workspace,type=bind",
-  "workspaceFolder": "/workspace/frontend",
+  "workspaceFolder": "/workspace/backend",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,11 +20,9 @@
         "donjayamanne.githistory",
         "eamodio.gitlens",
         "streetsidesoftware.code-spell-checker",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss"
+				"rust-lang.rust-analyzer"
       ]
     }
   },
-  "remoteUser": "node"
+	"remoteUser": "${localEnv:USER}"
 }
